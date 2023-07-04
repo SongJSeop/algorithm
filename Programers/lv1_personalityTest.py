@@ -1,4 +1,4 @@
-# # 프로그래머스 Lv1. 성격 유형 검사
+# 프로그래머스 Lv1. 성격 유형 검사
 
 def solution(survey, choices):
     answer = ''

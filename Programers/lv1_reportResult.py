@@ -1,4 +1,4 @@
-# # 프로그래머스 Lv1. 신고 결과 받기
+# 프로그래머스 Lv1. 신고 결과 받기
 
 def solution(id_list, report, k):
     answer = []
