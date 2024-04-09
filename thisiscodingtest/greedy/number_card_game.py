@@ -14,3 +14,14 @@ for row in numbers:
         result = smallNum
 
 print(result)
+
+# 책 모범 답안
+n, m = map(int, input().split())
+
+result = 0
+for i in range(n):
+    data = list(map(int, input().split()))
+    min_value = min(data)
+    result = max(result, min_value)
+
+print(result)
