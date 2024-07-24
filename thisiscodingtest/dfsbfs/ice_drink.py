@@ -1,32 +1,33 @@
-import time
+from collections import deque
 
+answer = 0
 n, m = map(int, input().split())
+board = []
+visited = [[False] * m for _ in range(n)]
+delta = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
-graph = []
 for i in range(n):
-    graph.append(list(map(int, input().split())))
+    board.append(list(map(int, list(input()))))
 
 
-def dfs(x, y):
-    if x <= -1 or x >= n or y <= -1 or y >= m:
-        return False
-    if graph[x][y] == 0:
-        graph[x][y] = 1
-        dfs(x - 1, y)
-        dfs(x, y - 1)
-        dfs(x + 1, y)
-        dfs(x, y + 1)
-        return True
-    return False
+def bfs(x, y):
+    queue = deque()
+    queue.append([x, y])
+    visited[x][y] = True
+
+    while queue:
+        px, py = queue.popleft()
+        for (dx, dy) in delta:
+            nx, ny = px + dx, py + dy
+            if 0 <= nx < n and 0 <= ny < m and board[nx][ny] == 0 and not visited[nx][ny]:
+                queue.append([nx, ny])
+                visited[nx][ny] = True
 
 
-start_time = time.time()
-result = 0
 for i in range(n):
     for j in range(m):
-        if dfs(i, j) == True:
-            result += 1
+        if board[i][j] == 0 and not visited[i][j]:
+            bfs(i, j)
+            answer += 1
 
-print(result)
-end_time = time.time()
-print("time: ", end_time - start_time)
+print(answer)
